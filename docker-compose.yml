@@ -1,0 +1,32 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    environment:
+      POSTGRES_PASSWORD: YourPassword
+      POSTGRES_HOST_AUTH_METHOD: md5
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+      - "5001:7221"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
