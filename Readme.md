@@ -1,4 +1,4 @@
-# Desafio Backend
+# Digital Wallet
 
 ## **Introdução**
 Essa é uma aplicação backend desenvolvida para gerenciar carteiras digitais e transações financeiras. Ela permite a criação de usuários,
